@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Syne:wght@400;600&family=Space+Mono&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/global.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
 <style>
 /* ====== LESSON PAGE STYLES ====== */
 .lesson-body {
@@ -98,9 +99,10 @@
   border-radius: 4px;
 }
 
-/* Code blocks */
+/* Code blocks — override Prism theme to match site */
+.lesson-body pre[class*="language-"],
 .lesson-body pre {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.05) !important;
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 8px;
   padding: 20px 24px;
@@ -109,15 +111,33 @@
   position: relative;
 }
 
-.lesson-body pre code {
+.lesson-body pre code,
+.lesson-body code[class*="language-"] {
   font-family: var(--font-mono);
   font-size: 14px;
   line-height: 1.7;
-  background: none;
-  color: var(--text);
+  background: none !important;
   padding: 0;
   border-radius: 0;
+  text-shadow: none !important;
 }
+
+/* Prism token color overrides for dark space theme */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata { color: #6a737d; }
+.token.keyword { color: #c792ea; }
+.token.function { color: #82aaff; }
+.token.string { color: #c3e88d; }
+.token.number { color: #f78c6c; }
+.token.boolean { color: #f78c6c; }
+.token.operator { color: #89ddff; }
+.token.punctuation { color: #a0a0b0; }
+.token.builtin { color: #ffcb6b; }
+.token.class-name { color: #ffcb6b; }
+.token.directive,
+.token.important { color: #c792ea; }
 
 .code-label {
   font-family: var(--font-mono);
@@ -862,5 +882,28 @@ x | y | result
 </main>
 
 <script src="/js/global.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+<script>
+// Auto-assign language classes based on .code-label text
+document.querySelectorAll('.code-label').forEach(function(label) {
+  var text = label.textContent.trim().toLowerCase();
+  var pre = label.nextElementSibling;
+  if (pre && pre.tagName === 'PRE') {
+    var code = pre.querySelector('code');
+    if (code) {
+      if (text === 'python') {
+        code.className = 'language-python';
+        pre.className = 'language-python';
+      } else if (text === 'c') {
+        code.className = 'language-c';
+        pre.className = 'language-c';
+      }
+    }
+  }
+});
+Prism.highlightAll();
+</script>
 </body>
 </html>
