@@ -144,6 +144,21 @@
   margin-bottom: 0;
 }
 
+.timeline-subheading {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--accent);
+  margin-top: 16px;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.timeline-subheading:first-of-type {
+  margin-top: 0;
+}
+
 /* ====== PROJECTS ====== */
 .projects-grid {
   display: flex;
