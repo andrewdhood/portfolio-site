@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Andrew Hood</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Syne:wght@400;600&family=Space+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/global.css">
+<link rel="stylesheet" href="/projects/projects.css">
+</head>
+<body>
+
+<div class="stars"></div>
+<div class="stars-medium"></div>
+<div class="stars-large"></div>
+<div class="shooting-star"></div>
+<div class="shooting-star"></div>
+<div class="shooting-star"></div>
+
+<nav class="navbar">
+  <a href="/" class="nav-logo">AH</a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/research/">Research</a></li>
+    <li><a href="/tech/">Tech</a></li>
+    <li><a href="/projects/" class="active">Projects</a></li>
+    <li><a href="/teaching/">Teaching</a></li>
+    <li><a href="/resume/">Resume</a></li>
+    <li><a href="/contact/">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/">Home</a>
+  <a href="/research/">Research</a>
+  <a href="/tech/">Tech</a>
+  <a href="/projects/" class="active">Projects</a>
+  <a href="/teaching/">Teaching</a>
+  <a href="/resume/">Resume</a>
+  <a href="/contact/">Contact</a>
+</div>
+
+<main class="content">
+
+  <header class="page-header">
+    <h1 class="page-title">Projects</h1>
+    <p class="page-subtitle">Personal &amp; Open-Source Work</p>
+    <div class="page-divider"></div>
+  </header>
+
+  <!-- ====== CLAUDE SKILLS ====== -->
+  <section class="projects-section">
+
+    <div class="project-showcase">
+      <div class="showcase-meta">
+        <span class="showcase-year">2026</span>
+        <span class="showcase-label">AI + Salesforce</span>
+      </div>
+      <h2 class="showcase-title">Salesforce Development Skills for Claude Code</h2>
+      <p class="showcase-tagline">Three MCP skills that enable Claude Code to architect and deploy production-grade Salesforce solutions&mdash;Apex, Lightning Web Components, Experience Cloud sites, and Flows&mdash;from a single prompt.</p>
+
+      <div class="showcase-links">
+        <a href="https://lego-yoda-asmr-dev-ed.my.site.com/n8n" target="_blank" rel="noopener" class="showcase-link">Live Demo &mdash; One-Shot Experience Cloud Site</a>
+      </div>
+
+      <div class="skill-stats">
+        <div class="stat-item">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Skills</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">92</div>
+          <div class="stat-label">Reference Docs</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">28K+</div>
+          <div class="stat-label">Lines Distilled</div>
+        </div>
+      </div>
+
+      <p class="showcase-subheading">What It Does</p>
+      <p class="showcase-description">Each skill bundles structured reference knowledge&mdash;distilled from official Salesforce documentation, PDFs, and real-world project patterns&mdash;into a format Claude can consume at prompt time. The result: Claude produces code that respects governor limits, uses correct sharing models, follows deployment ordering, and handles the platform-specific edge cases that typically require senior-level experience.</p>
+      <p class="showcase-description">The Experience Cloud skill one-shotted a complete LWR site with a custom Lightning theme configurable via Experience Builder, guest user access patterns, and proper deployment metadata&mdash;all in a single execution.</p>
+
+      <p class="showcase-subheading">The Three Skills</p>
+      <ul class="showcase-details">
+        <li><strong>sf-apex-skill</strong> &mdash; Apex classes, triggers, Visualforce PDF generation, email automation, invocable methods, and solution architecture patterns. 44 reference docs covering governor limits, bulkification, and testing strategies.</li>
+        <li><strong>lwc-ec-skill</strong> &mdash; Lightning Web Components for Experience Cloud (LWR sites). Theme layouts, guest user security, CSS architecture, Custom Property Editors, and deployment ordering. Includes digital experience bundle templates.</li>
+        <li><strong>sf-flow-automation-skill</strong> &mdash; Record-Triggered Flows, Screen Flows, Scheduled Flows, Approval Processes, and Platform Event Flows. Before-save vs. after-save decision matrices, bulkification anti-patterns, and order of execution.</li>
+      </ul>
+
+      <p class="showcase-subheading">Research-to-Distillation Pipeline</p>
+      <ul class="showcase-details">
+        <li>Web search and triage of Salesforce sources, scoring by relevance (official docs, deployment patterns, real-world pitfalls)</li>
+        <li>Full-page content extraction and transformation into instruction-oriented reference format: rules, code examples, failure modes, and cross-references</li>
+        <li>Gap-filling phase with parallel AI research agents targeting identified knowledge holes (PDFs, release notes, GitHub issues)</li>
+        <li>All knowledge bundled locally&mdash;no external API calls during development. Exposed as tools via an MCP server with BM25 search.</li>
+      </ul>
+    </div>
+
+  <!-- ====== CPS MATCH ====== -->
+
+    <div class="project-showcase">
+      <div class="showcase-meta">
+        <span class="showcase-year">2025</span>
+        <span class="showcase-label">Data Science</span>
+      </div>
+      <h2 class="showcase-title">CPS Selective Enrollment Admissions Simulation</h2>
+      <p class="showcase-tagline">A Monte Carlo simulation modeling 22,000 students across all 11 Chicago selective enrollment high schools, built to help families from underserved communities understand their true competitive position.</p>
+
+      <div class="showcase-links">
+        <a href="https://github.com/andrewdhood/cps_match" target="_blank" rel="noopener" class="showcase-link">github.com/andrewdhood/cps_match</a>
+      </div>
+
+      <p class="showcase-subheading">The Problem</p>
+      <p class="showcase-description">Chicago&rsquo;s selective enrollment admissions process ranks students by composite score across four demographic tiers, but families have no way to estimate where they actually stand. Published cutoff scores are available, but the underlying population distributions are hidden&mdash;making it impossible to assess competitiveness without statistical recovery of those parameters.</p>
+
+      <p class="showcase-subheading">The Approach</p>
+      <ul class="showcase-details">
+        <li>Applied Maximum Likelihood Estimation to recover hidden population parameters (mean, variance) from published admissions cutoff data and acceptance counts</li>
+        <li>Built a full Monte Carlo simulation in Python (NumPy, Pandas, Matplotlib) that models the entire admissions pipeline: score generation, tier assignment, rank-ordering, and seat allocation</li>
+        <li>Validated the simulation against known historical outcomes to ensure statistical fidelity</li>
+        <li>Published analytical essay &ldquo;On the Weight of a Number&rdquo; exploring equity, statistical methodology, and the human impact of admissions algorithms</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="https://linkedin.com/in/adhood" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/andrewdhood" target="_blank" rel="noopener">GitHub</a>
+      <a href="/resume/">Resume</a>
+      <a href="mailto:andrewdavidhood@gmail.com">Email</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Andrew Hood</p>
+  </footer>
+
+</main>
+
+<script src="/js/global.js"></script>
+</body>
+</html>
