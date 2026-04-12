@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andrew Hood</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Syne:wght@400;600&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #08080e;
+  --text: #e8e8e8;
+  --text-dim: #888;
+  --text-bright: #fff;
+  --accent: #c8c8d0;
+  --font-hero: 'Chakra Petch', sans-serif;
+  --font-body: 'Syne', sans-serif;
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-mono: 'Space Mono', monospace;
+  --nav-height: 60px;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+a:hover { color: var(--text-bright); }
+
+/* ====== TWINKLING STARS (Pure CSS) ====== */
+.stars, .stars-medium, .stars-large {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.stars {
+  animation: twinkle1 4s ease-in-out infinite alternate;
+  box-shadow:
+    24px 89px #fff, 130px 210px #fff, 250px 45px #fff,
+    390px 180px #fff, 520px 70px #fff, 680px 290px #fff,
+    45px 350px #fff, 170px 420px #fff, 310px 500px #fff,
+    460px 380px #fff, 600px 510px #fff, 740px 120px #fff,
+    80px 600px #fff, 200px 680px #fff, 350px 750px #fff,
+    500px 640px #fff, 650px 720px #fff, 780px 430px #fff,
+    55px 820px #fff, 190px 900px #fff, 330px 870px #fff,
+    470px 950px #fff, 620px 860px #fff, 760px 940px #fff,
+    100px 1050px #fff, 260px 1120px #fff, 410px 1080px #fff,
+    560px 1150px #fff, 700px 1020px #fff, 820px 200px #fff,
+    880px 350px #fff, 950px 80px #fff, 1020px 500px #fff,
+    1100px 150px #fff, 1180px 420px #fff, 1260px 300px #fff,
+    920px 680px #fff, 1050px 750px #fff, 1150px 620px #fff,
+    1280px 850px #fff, 870px 920px #fff, 1000px 1000px #fff,
+    1130px 890px #fff, 1250px 1050px #fff, 1350px 180px #fff,
+    1400px 460px #fff, 1300px 650px #fff, 1380px 900px #fff,
+    35px 1200px #fff, 180px 1350px #fff, 320px 1280px #fff,
+    480px 1400px #fff, 630px 1300px #fff, 800px 1380px #fff,
+    960px 1200px #fff, 1100px 1350px #fff, 1240px 1250px #fff,
+    1380px 1150px #fff, 70px 1500px #fff, 220px 1580px #fff,
+    400px 1520px #fff, 580px 1600px #fff, 720px 1480px #fff,
+    900px 1550px #fff, 1060px 1500px #fff, 1200px 1580px #fff;
+}
+
+.stars-medium::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 2px; height: 2px;
+  background: transparent;
+  animation: twinkle2 5s ease-in-out infinite alternate;
+  box-shadow:
+    80px 140px #fff, 320px 90px #fff, 550px 250px #fff,
+    150px 480px #fff, 420px 360px #fff, 700px 500px #fff,
+    60px 720px #fff, 280px 650px #fff, 500px 800px #fff,
+    730px 700px #fff, 900px 150px #fff, 1050px 340px #fff,
+    850px 550px #fff, 1150px 200px #fff, 1000px 680px #fff,
+    200px 1000px #fff, 450px 1100px #fff, 680px 1050px #fff,
+    1100px 900px #fff, 1280px 400px #fff, 370px 1350px #fff,
+    820px 1250px #fff, 1050px 1150px #fff, 1300px 750px #fff,
+    120px 1450px #fff, 560px 1500px #fff, 950px 1400px #fff;
+}
+
+.stars-large::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: transparent;
+  animation: twinkle3 7s ease-in-out infinite alternate;
+  box-shadow:
+    200px 120px rgba(255,255,255,0.9),
+    600px 300px rgba(255,255,255,0.85),
+    450px 600px rgba(255,255,255,0.9),
+    900px 200px rgba(255,255,255,0.8),
+    1100px 500px rgba(255,255,255,0.85),
+    350px 900px rgba(255,255,255,0.9),
+    750px 800px rgba(255,255,255,0.8),
+    1200px 700px rgba(255,255,255,0.85),
+    100px 1200px rgba(255,255,255,0.9),
+    550px 1100px rgba(255,255,255,0.8),
+    1000px 1000px rgba(255,255,255,0.85),
+    800px 1350px rgba(255,255,255,0.9);
+}
+
+@keyframes twinkle1 {
+  0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.4; }
+}
+@keyframes twinkle2 {
+  0% { opacity: 0.5; } 50% { opacity: 0.9; } 100% { opacity: 0.3; }
+}
+@keyframes twinkle3 {
+  0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.5; }
+}
+
+/* ====== SHOOTING STARS ====== */
+.shooting-star {
+  position: fixed;
+  width: 3px; height: 3px;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+  filter: drop-shadow(0 0 3px rgba(255,255,255,0.8));
+}
+
+.shooting-star::after {
+  content: '';
+  position: absolute;
+  top: 50%; right: 100%;
+  width: 80px; height: 1px;
+  background: linear-gradient(to left, rgba(255,255,255,0.7), rgba(255,255,255,0.2) 30%, transparent);
+  transform: translateY(-50%);
+}
+
+.shooting-star:nth-child(1) {
+  top: 12%; left: 10%;
+  animation: shoot1 55s linear infinite;
+  animation-delay: 8s;
+}
+.shooting-star:nth-child(2) {
+  top: 8%; left: 55%;
+  animation: shoot2 70s linear infinite;
+  animation-delay: 30s;
+}
+.shooting-star:nth-child(3) {
+  top: 25%; left: 5%;
+  animation: shoot3 80s linear infinite;
+  animation-delay: 50s;
+}
+
+@keyframes shoot1 {
+  0%, 95%  { opacity: 0; transform: translate(0, 0) rotate(-25deg); }
+  96%      { opacity: 1; }
+  100%     { opacity: 0; transform: translate(85vw, 25vh) rotate(-25deg); }
+}
+@keyframes shoot2 {
+  0%, 96%  { opacity: 0; transform: translate(0, 0) rotate(-35deg); }
+  97%      { opacity: 1; }
+  100%     { opacity: 0; transform: translate(40vw, 30vh) rotate(-35deg); }
+}
+@keyframes shoot3 {
+  0%, 97%  { opacity: 0; transform: translate(0, 0) rotate(-20deg); }
+  97.5%    { opacity: 1; }
+  100%     { opacity: 0; transform: translate(70vw, 18vh) rotate(-20deg); }
+}
+
+/* ====== PIXEL MOON CONTAINER ====== */
+.moon-container {
+  position: fixed;
+  top: 30px; right: 5%;
+  z-index: 1;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.moon-container svg {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  width: 320px; height: 320px;
+  opacity: 0.88;
+  filter: drop-shadow(0 0 30px rgba(232,228,212,0.10))
+          drop-shadow(0 0 70px rgba(232,228,212,0.05));
+}
+
+/* ====== NAVIGATION ====== */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  z-index: 100;
+  background: rgba(8,8,14,0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.nav-logo {
+  font-family: var(--font-hero);
+  font-size: 16px; font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.nav-links {
+  display: flex; gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: var(--text-bright);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover { color: var(--text-bright); }
+.nav-links a:hover::after { width: 100%; }
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none; border: none;
+  padding: 4px;
+  z-index: 110;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px; height: 2px;
+  background: var(--text);
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(8,8,14,0.97);
+  z-index: 105;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+
+.mobile-menu.active { display: flex; }
+
+.mobile-menu a {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+}
+
+.mobile-menu a:hover { color: var(--text-bright); }
+
+/* ====== CONTENT ====== */
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: var(--nav-height);
+}
+
+.hero-name {
+  font-family: var(--font-hero);
+  font-size: clamp(52px, 9vw, 108px);
+  font-weight: 700;
+  line-height: 1.0;
+  color: var(--text-bright);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.hero-tagline {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-dim);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 48px;
+}
+
+.hero-divider {
+  width: 48px; height: 1px;
+  background: var(--text-dim);
+  margin-bottom: 48px;
+}
+
+.hero-intro {
+  font-family: var(--font-serif);
+  font-size: 22px; font-weight: 400;
+  color: var(--accent);
+  line-height: 1.7;
+  max-width: 560px;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px; left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.scroll-indicator span {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.scroll-indicator .arrow {
+  width: 1px; height: 24px;
+  background: linear-gradient(to bottom, var(--text-dim), transparent);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%      { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ====== ROLE SECTIONS ====== */
+.roles { padding: 80px 0 160px; }
+
+.role {
+  margin-bottom: 120px;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease forwards;
+  animation-play-state: paused;
+}
+
+.role-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+}
+
+.role-title {
+  font-family: var(--font-serif);
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 600;
+  color: var(--text-bright);
+  line-height: 1.2;
+  margin-bottom: 24px;
+  letter-spacing: -0.5px;
+}
+
+.role-description {
+  font-family: var(--font-body);
+  font-size: 16px; font-weight: 400;
+  color: var(--text-dim);
+  line-height: 1.8;
+  max-width: 560px;
+  margin-bottom: 28px;
+}
+
+.role-link {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  border-bottom: 1px solid rgba(200,200,208,0.3);
+  padding-bottom: 2px;
+  transition: border-color 0.3s ease;
+}
+
+.role-link:hover {
+  color: var(--text-bright);
+  border-color: var(--text-bright);
+}
+
+@keyframes fadeInUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ====== FOOTER ====== */
+.footer {
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 48px 0;
+  text-align: center;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.footer-copy {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: rgba(136,136,136,0.5);
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+  .navbar { padding: 0 24px; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .content { padding: 0 24px; }
+  .moon-container { right: -30px; top: 50px; }
+  .moon-container svg { width: 200px; height: 200px; }
+  .role { margin-bottom: 80px; }
+  .footer-links { gap: 20px; }
+}
+
+@media (max-width: 480px) {
+  .hero-intro { font-size: 18px; }
+  .role-description { font-size: 15px; }
+  .moon-container svg { width: 140px; height: 140px; }
+  .moon-container { right: -15px; top: 65px; }
+}
+</style>
+</head>
+<body>
+
+<div class="stars"></div>
+<div class="stars-medium"></div>
+<div class="stars-large"></div>
+
+<div class="shooting-star"></div>
+<div class="shooting-star"></div>
+<div class="shooting-star"></div>
+
+<div class="moon-container" id="moon">
+  <svg id="moonSvg" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges"></svg>
+</div>
+
+<nav class="navbar">
+  <a href="#" class="nav-logo">AH</a>
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Research</a></li>
+    <li><a href="#">Tech</a></li>
+    <li><a href="#">Teaching</a></li>
+    <li><a href="#">Resume</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#">Home</a>
+  <a href="#">Research</a>
+  <a href="#">Tech</a>
+  <a href="#">Teaching</a>
+  <a href="#">Resume</a>
+  <a href="#">Contact</a>
+</div>
+
+<main class="content">
+
+  <section class="hero">
+    <h1 class="hero-name">Andrew<br>Hood</h1>
+    <p class="hero-tagline">Chicago, IL</p>
+    <div class="hero-divider"></div>
+    <p class="hero-intro">
+      Researcher, developer, and educator building at the intersection of science, technology, and learning.
+    </p>
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <div class="arrow"></div>
+    </div>
+  </section>
+
+  <section class="roles">
+
+    <div class="role">
+      <p class="role-label">01</p>
+      <h2 class="role-title">Data Scientist</h2>
+      <p class="role-description">
+        From protein crystallography at GVSU to space pharmacology at NASA Johnson Space Center,
+        my research career has always been about finding patterns in complex systems. I hold a
+        B.S. in Mathematics with a concentration in Probability, Statistics, and Data Science
+        from UT Austin, and I've applied that foundation to everything from antibiotic resistance
+        studies to building Monte Carlo simulations that model CPS Selective Enrollment admissions.
+        I believe the most meaningful data work starts with a real question and ends with a
+        decision someone can act on.
+      </p>
+      <a href="#" class="role-link">View Research &rarr;</a>
+    </div>
+
+    <div class="role">
+      <p class="role-label">02</p>
+      <h2 class="role-title">Salesforce Developer</h2>
+      <p class="role-description">
+        Senior Salesforce Developer and client-facing technical lead at a boutique consulting
+        firm in Chicago. I architect solutions in Apex, Lightning Web Components, and Experience
+        Cloud across industries from telecom to construction. My work includes building billing
+        portals, designing third-party API integrations, and leading junior developers through
+        complex deployments. I care about clean code, governor limits, and building things that
+        the next developer can actually read.
+      </p>
+      <a href="#" class="role-link">View Projects &rarr;</a>
+    </div>
+
+    <div class="role">
+      <p class="role-label">03</p>
+      <h2 class="role-title">Math Educator</h2>
+      <p class="role-description">
+        I run a private tutoring practice in Chicago serving students on standardized test
+        preparation, advanced mathematics, and introductory programming. My students have scored
+        820–895 on the HSAT with no prior testing experience, and a 35 on the ACT on a first
+        attempt. I teach because I believe every student deserves someone who can meet them
+        where they are and show them what they're capable of. I'm currently pursuing a path
+        toward full-time high school math instruction.
+      </p>
+      <a href="#" class="role-link">Learn More &rarr;</a>
+    </div>
+
+  </section>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="#">LinkedIn</a>
+      <a href="#">GitHub</a>
+      <a href="#">Resume</a>
+      <a href="mailto:andrew@example.com">Email</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Andrew Hood</p>
+  </footer>
+
+</main>
+
+<script>
+// ================================================
+// PROCEDURAL PIXEL ART FULL MOON
+// Generates a 44x44 pixel grid with:
+//   - circular mask
+//   - surface texture noise
+//   - dark maria (sea) regions based on real lunar geography
+//   - individual craters with rims
+//   - bright ray systems (Tycho, Copernicus)
+//   - limb darkening at edges
+// Renders into SVG rects on page load.
+// ================================================
+
+(function generateMoon() {
+  const SIZE = 44;
+  const svg = document.getElementById('moonSvg');
+  svg.setAttribute('viewBox', '0 0 ' + SIZE + ' ' + SIZE);
+
+  const center = SIZE / 2;
+  const radius = SIZE / 2 - 1;
+
+  // nine-tone grayscale palette from bright to dark
+  const palette = [
+    'transparent',
+    '#faf6ea',  // 1: bright highlight
+    '#f0ece0',  // 2: light highland
+    '#e8e4d4',  // 3: base surface
+    '#ddd9c8',  // 4: slightly darker
+    '#d0ccb8',  // 5: mare edge
+    '#bfb9a0',  // 6: light mare
+    '#ada68c',  // 7: dark mare
+    '#9c9578',  // 8: crater floor
+    '#8a8468',  // 9: deep shadow
+  ];
+
+  // deterministic pseudo-random
+  var seed = 42;
+  function rand() {
+    seed = (seed * 16807) % 2147483647;
+    return (seed - 1) / 2147483646;
+  }
+
+  // build the base grid with circle mask and texture noise
+  var grid = [];
+  for (var y = 0; y < SIZE; y++) {
+    grid[y] = [];
+    for (var x = 0; x < SIZE; x++) {
+      var dx = x - center + 0.5;
+      var dy = y - center + 0.5;
+      var dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist <= radius) {
+        var noise = rand();
+        if (noise < 0.12) {
+          grid[y][x] = 2;
+        }
+        else if (noise < 0.28) {
+          grid[y][x] = 4;
+        }
+        else {
+          grid[y][x] = 3;
+        }
+      }
+      else {
+        grid[y][x] = 0;
+      }
+    }
+  }
+
+  // paint the major maria — dark lowland regions
+  // positions approximate real lunar geography
+  var maria = [
+    { cx: center - 6,  cy: center + 1,  rx: 7,  ry: 9,  depth: 6 },  // Oceanus Procellarum
+    { cx: center - 4,  cy: center - 7,  rx: 6,  ry: 5,  depth: 7 },  // Mare Imbrium
+    { cx: center + 4,  cy: center - 5,  rx: 4,  ry: 3.5, depth: 6 }, // Mare Serenitatis
+    { cx: center + 6,  cy: center - 1,  rx: 5,  ry: 4,  depth: 7 },  // Mare Tranquillitatis
+    { cx: center + 10, cy: center - 4,  rx: 2.5, ry: 2,  depth: 7 }, // Mare Crisium
+    { cx: center + 7,  cy: center + 4,  rx: 3.5, ry: 3,  depth: 6 }, // Mare Fecunditatis
+    { cx: center - 1,  cy: center + 7,  rx: 5,  ry: 3,  depth: 6 },  // Mare Nubium
+    { cx: center - 8,  cy: center + 8,  rx: 3,  ry: 2.5, depth: 7 }, // Mare Humorum
+    { cx: center + 1,  cy: center - 2,  rx: 2.5, ry: 2,  depth: 6 }, // Mare Vaporum
+    { cx: center - 1,  cy: center - 12, rx: 8,  ry: 2,  depth: 5 },  // Mare Frigoris
+  ];
+
+  for (var mi = 0; mi < maria.length; mi++) {
+    var m = maria[mi];
+    for (var y = 0; y < SIZE; y++) {
+      for (var x = 0; x < SIZE; x++) {
+        if (grid[y][x] === 0) { continue; }
+        var ddx = (x - m.cx) / m.rx;
+        var ddy = (y - m.cy) / m.ry;
+        var d = ddx * ddx + ddy * ddy;
+        if (d < 0.6) {
+          grid[y][x] = Math.min(9, m.depth + 1);
+        }
+        else if (d < 1.0) {
+          grid[y][x] = m.depth;
+        }
+        else if (d < 1.4) {
+          var edge = m.depth - 1;
+          if (edge > grid[y][x]) {
+            grid[y][x] = edge;
+          }
+        }
+      }
+    }
+  }
+
+  // stamp individual craters — dark floor, bright rim ejecta
+  var craters = [
+    { cx: center - 10, cy: center - 10, r: 2.2 },
+    { cx: center - 3,  cy: center + 13, r: 2.8 },  // Tycho
+    { cx: center + 12, cy: center + 1,  r: 1.5 },
+    { cx: center - 12, cy: center - 3,  r: 1.8 },
+    { cx: center + 3,  cy: center - 10, r: 1.5 },
+    { cx: center - 7,  cy: center - 14, r: 1.2 },
+    { cx: center + 9,  cy: center + 9,  r: 1.8 },
+    { cx: center - 15, cy: center + 4,  r: 1.3 },
+    { cx: center + 1,  cy: center + 5,  r: 1.0 },
+    { cx: center - 5,  cy: center + 5,  r: 1.0 },
+    { cx: center + 7,  cy: center - 9,  r: 1.2 },
+    { cx: center - 2,  cy: center - 4,  r: 0.8 },
+    { cx: center + 14, cy: center - 1,  r: 1.0 },
+    { cx: center - 9,  cy: center + 13, r: 1.4 },
+    { cx: center + 4,  cy: center + 12, r: 1.0 },
+    { cx: center + 2,  cy: center - 14, r: 1.0 },
+    { cx: center - 4,  cy: center + 17, r: 1.5 },
+    { cx: center + 10, cy: center - 8,  r: 1.0 },
+    { cx: center - 13, cy: center + 10, r: 1.2 },
+    { cx: center + 5,  cy: center + 7,  r: 0.9 },
+  ];
+
+  for (var ci = 0; ci < craters.length; ci++) {
+    var c = craters[ci];
+    for (var y = 0; y < SIZE; y++) {
+      for (var x = 0; x < SIZE; x++) {
+        if (grid[y][x] === 0) { continue; }
+        var cdx = x - c.cx;
+        var cdy = y - c.cy;
+        var cd = Math.sqrt(cdx * cdx + cdy * cdy);
+        if (cd < c.r * 0.5) {
+          grid[y][x] = 8;
+        }
+        else if (cd < c.r * 0.8) {
+          grid[y][x] = Math.max(grid[y][x], 7);
+        }
+        else if (cd < c.r * 1.3) {
+          if (grid[y][x] > 2) {
+            grid[y][x] = 2;
+          }
+        }
+      }
+    }
+  }
+
+  // bright ray systems radiating from major craters
+  var rays = [
+    { cx: center - 3, cy: center + 13, count: 8, len: 14 },  // Tycho rays
+    { cx: center - 10, cy: center - 10, count: 5, len: 9 },  // Copernicus rays
+  ];
+
+  for (var ri = 0; ri < rays.length; ri++) {
+    var ray = rays[ri];
+    for (var i = 0; i < ray.count; i++) {
+      var angle = (Math.PI * 2 / ray.count) * i + rand() * 0.6;
+      for (var t = 2; t < ray.len; t++) {
+        var rx = Math.round(ray.cx + Math.cos(angle) * t);
+        var ry = Math.round(ray.cy + Math.sin(angle) * t);
+        if (rx >= 0 && rx < SIZE && ry >= 0 && ry < SIZE && grid[ry][rx] !== 0) {
+          if (grid[ry][rx] > 2 && rand() > 0.35) {
+            grid[ry][rx] = 2;
+          }
+        }
+      }
+    }
+  }
+
+  // limb darkening — edges of the disk get slightly darker
+  for (var y = 0; y < SIZE; y++) {
+    for (var x = 0; x < SIZE; x++) {
+      if (grid[y][x] === 0) { continue; }
+      var ldx = x - center + 0.5;
+      var ldy = y - center + 0.5;
+      var ldist = Math.sqrt(ldx * ldx + ldy * ldy);
+      var limb = ldist / radius;
+      if (limb > 0.87 && grid[y][x] < 5) {
+        grid[y][x] = Math.min(9, grid[y][x] + 1);
+      }
+      if (limb > 0.93 && grid[y][x] < 7) {
+        grid[y][x] = Math.min(9, grid[y][x] + 1);
+      }
+    }
+  }
+
+  // render every non-transparent pixel as an SVG rect
+  var fragment = document.createDocumentFragment();
+  for (var y = 0; y < SIZE; y++) {
+    for (var x = 0; x < SIZE; x++) {
+      if (grid[y][x] === 0) { continue; }
+      var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      rect.setAttribute('x', x);
+      rect.setAttribute('y', y);
+      rect.setAttribute('width', 1);
+      rect.setAttribute('height', 1);
+      rect.setAttribute('fill', palette[grid[y][x]]);
+      fragment.appendChild(rect);
+    }
+  }
+  svg.appendChild(fragment);
+})();
+
+
+// ================================================
+// PARALLAX — moon drifts at 30% of scroll speed
+// ================================================
+var moonEl = document.getElementById('moon');
+var ticking = false;
+
+window.addEventListener('scroll', function() {
+  if (!ticking) {
+    window.requestAnimationFrame(function() {
+      moonEl.style.transform = 'translateY(' + (window.scrollY * 0.3) + 'px)';
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
+
+
+// ================================================
+// HAMBURGER MENU
+// ================================================
+var hamburger = document.getElementById('hamburger');
+var mobileMenu = document.getElementById('mobileMenu');
+
+hamburger.addEventListener('click', function() {
+  hamburger.classList.toggle('active');
+  mobileMenu.classList.toggle('active');
+  document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+});
+
+var mobileLinks = mobileMenu.querySelectorAll('a');
+for (var i = 0; i < mobileLinks.length; i++) {
+  mobileLinks[i].addEventListener('click', function() {
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+}
+
+
+// ================================================
+// SCROLL REVEAL — role cards fade in on viewport entry
+// ================================================
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.style.animationPlayState = 'running';
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+var roles = document.querySelectorAll('.role');
+for (var i = 0; i < roles.length; i++) {
+  observer.observe(roles[i]);
+}
+</script>
+
+</body>
+</html>

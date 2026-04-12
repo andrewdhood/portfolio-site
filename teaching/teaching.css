@@ -1,0 +1,309 @@
+/* ====== TEACHING PAGE ====== */
+
+/* ====== PHILOSOPHY ====== */
+.teaching-philosophy {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease forwards;
+  margin-bottom: 8px;
+}
+
+.philosophy-text {
+  font-family: var(--font-serif);
+  font-size: 21px;
+  font-weight: 400;
+  color: var(--accent);
+  line-height: 1.75;
+  max-width: 640px;
+  margin-bottom: 20px;
+}
+
+.philosophy-text:last-child {
+  margin-bottom: 0;
+}
+
+/* ====== TEACHING ENTRIES ====== */
+.teaching-entry {
+  padding: 40px 0 8px;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.entry-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.entry-number {
+  font-family: var(--font-hero);
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(136, 136, 136, 0.35);
+  letter-spacing: 2px;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+.entry-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.entry-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.entry-date {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: rgba(136, 136, 136, 0.6);
+}
+
+.entry-title {
+  font-family: var(--font-serif);
+  font-size: clamp(28px, 4vw, 38px);
+  font-weight: 600;
+  color: var(--text-bright);
+  line-height: 1.25;
+  margin-bottom: 8px;
+  letter-spacing: -0.3px;
+}
+
+.entry-location {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.entry-location a {
+  color: var(--accent);
+  border-bottom: 1px solid rgba(200, 200, 208, 0.25);
+  padding-bottom: 1px;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.entry-location a:hover {
+  color: var(--text-bright);
+  border-color: var(--text-bright);
+}
+
+.entry-description {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text-dim);
+  line-height: 1.8;
+  max-width: 600px;
+  margin-bottom: 28px;
+}
+
+.entry-details {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 24px;
+}
+
+.entry-details li {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text-dim);
+  line-height: 1.7;
+  padding-left: 20px;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.entry-details li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 11px;
+  width: 6px;
+  height: 1px;
+  background: rgba(200, 200, 208, 0.4);
+}
+
+.entry-note {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-style: italic;
+  color: rgba(200, 200, 208, 0.6);
+  line-height: 1.6;
+}
+
+/* ====== SPECIALIZATIONS HEADING ====== */
+.specializations-heading {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 16px;
+}
+
+/* ====== RESULTS / STATS CALLOUTS ====== */
+.results-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.result-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: border-color 0.3s ease;
+}
+
+.result-card:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.result-number {
+  font-family: var(--font-hero);
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 700;
+  color: var(--text-bright);
+  letter-spacing: 1px;
+  line-height: 1.1;
+}
+
+.result-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+/* ====== SUBJECTS SECTION ====== */
+.subjects-section {
+  padding: 40px 0 60px;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.section-heading {
+  font-family: var(--font-hero);
+  font-size: clamp(24px, 4vw, 32px);
+  font-weight: 700;
+  color: var(--text-bright);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+
+.subjects-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.subject-tag {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--accent);
+  padding: 10px 20px;
+  border: 1px solid rgba(200, 200, 208, 0.15);
+  border-radius: 100px;
+  transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
+  white-space: nowrap;
+}
+
+.subject-tag:hover {
+  border-color: rgba(200, 200, 208, 0.35);
+  color: var(--text-bright);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* ====== RESPONSIVE — TABLET ====== */
+@media (max-width: 768px) {
+  .results-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .result-card {
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 20px;
+  }
+
+  .result-number {
+    font-size: 24px;
+    flex-shrink: 0;
+    min-width: 80px;
+  }
+
+  .result-label {
+    font-size: 10px;
+  }
+
+  .philosophy-text {
+    font-size: 19px;
+  }
+
+  .entry-header {
+    gap: 14px;
+  }
+
+  .teaching-entry {
+    padding: 32px 0 8px;
+  }
+
+  .subjects-section {
+    padding: 32px 0 48px;
+  }
+
+  .subject-tag {
+    font-size: 11px;
+    padding: 8px 16px;
+  }
+}
+
+/* ====== RESPONSIVE — MOBILE ====== */
+@media (max-width: 480px) {
+  .philosophy-text {
+    font-size: 18px;
+  }
+
+  .entry-title {
+    font-size: 24px;
+  }
+
+  .entry-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .section-heading {
+    font-size: 22px;
+  }
+
+  .subject-tag {
+    white-space: normal;
+    text-align: center;
+  }
+}
