@@ -236,6 +236,24 @@
   background: rgba(255, 255, 255, 0.03);
 }
 
+/* ====== LESSON LINK ====== */
+.lesson-link {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+  border-bottom: 1px solid rgba(200, 200, 208, 0.25);
+  padding-bottom: 2px;
+  margin-bottom: 20px;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.lesson-link:hover {
+  color: var(--text-bright);
+  border-color: var(--text-bright);
+}
+
 /* ====== INLINE CODE ====== */
 .entry-details code {
   font-family: var(--font-mono);

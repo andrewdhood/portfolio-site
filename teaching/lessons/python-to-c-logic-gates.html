@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Logic Gates: Python to C — Andrew Hood</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Syne:wght@400;600&family=Space+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/global.css">
+<style>
+/* ====== LESSON PAGE STYLES ====== */
+.lesson-body {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  line-height: 1.8;
+  color: var(--text);
+  padding-bottom: 80px;
+}
+
+.lesson-body h2 {
+  font-family: var(--font-hero);
+  font-size: clamp(22px, 4vw, 32px);
+  font-weight: 700;
+  color: var(--text-bright);
+  letter-spacing: 1px;
+  margin-top: 64px;
+  margin-bottom: 24px;
+}
+
+.lesson-body h3 {
+  font-family: var(--font-hero);
+  font-size: clamp(18px, 3vw, 24px);
+  font-weight: 600;
+  color: var(--text-bright);
+  letter-spacing: 0.5px;
+  margin-top: 48px;
+  margin-bottom: 16px;
+}
+
+.lesson-body p {
+  margin-bottom: 16px;
+}
+
+.lesson-body strong {
+  color: var(--text-bright);
+}
+
+.lesson-body a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-color: rgba(200,200,208,0.3);
+  text-underline-offset: 3px;
+}
+
+.lesson-body a:hover {
+  color: var(--text-bright);
+  text-decoration-color: var(--text-bright);
+}
+
+.lesson-body ul,
+.lesson-body ol {
+  margin-bottom: 16px;
+  padding-left: 24px;
+}
+
+.lesson-body li {
+  margin-bottom: 8px;
+}
+
+.lesson-body hr {
+  border: none;
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  margin: 48px 0;
+}
+
+/* Blockquote */
+.lesson-body blockquote {
+  border-left: 3px solid rgba(200,200,208,0.3);
+  padding: 16px 20px;
+  margin: 20px 0;
+  background: rgba(255,255,255,0.02);
+  border-radius: 0 6px 6px 0;
+  font-style: italic;
+}
+
+.lesson-body blockquote p {
+  margin-bottom: 0;
+}
+
+/* Inline code */
+.lesson-body code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: rgba(200,200,208,0.1);
+  color: var(--accent);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Code blocks */
+.lesson-body pre {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin: 20px 0;
+  overflow-x: auto;
+  position: relative;
+}
+
+.lesson-body pre code {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.7;
+  background: none;
+  color: var(--text);
+  padding: 0;
+  border-radius: 0;
+}
+
+.code-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  display: block;
+  margin-bottom: -12px;
+  padding-top: 4px;
+}
+
+/* Tables */
+.lesson-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+}
+
+.lesson-body th {
+  font-family: var(--font-hero);
+  font-weight: 600;
+  color: var(--text-bright);
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 2px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.03);
+}
+
+.lesson-body td {
+  padding: 10px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-family: var(--font-serif);
+}
+
+.lesson-body tr:last-child td {
+  border-bottom: none;
+}
+
+/* Table of contents */
+.toc {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 24px 32px;
+  margin: 24px 0 48px 0;
+}
+
+.toc ol {
+  padding-left: 20px;
+  margin-bottom: 0;
+}
+
+.toc li {
+  margin-bottom: 6px;
+}
+
+.toc a {
+  text-decoration: none;
+}
+
+.toc a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .lesson-body {
+    font-size: 18px;
+  }
+
+  .lesson-body pre {
+    padding: 16px;
+  }
+
+  .lesson-body pre code {
+    font-size: 13px;
+  }
+
+  .lesson-body table {
+    font-size: 14px;
+  }
+
+  .lesson-body th,
+  .lesson-body td {
+    padding: 8px 10px;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="stars"></div>
+<div class="stars-medium"></div>
+<div class="stars-large"></div>
+<div class="shooting-star"></div>
+<div class="shooting-star"></div>
+<div class="shooting-star"></div>
+
+<nav class="navbar">
+  <a href="/" class="nav-logo">AH</a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/research/">Research</a></li>
+    <li><a href="/tech/">Tech</a></li>
+    <li><a href="/projects/">Projects</a></li>
+    <li><a href="/teaching/">Teaching</a></li>
+    <li><a href="/resume/">Resume</a></li>
+    <li><a href="/contact/">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/">Home</a>
+  <a href="/research/">Research</a>
+  <a href="/tech/">Tech</a>
+  <a href="/projects/">Projects</a>
+  <a href="/teaching/">Teaching</a>
+  <a href="/resume/">Resume</a>
+  <a href="/contact/">Contact</a>
+</div>
+
+<main class="content">
+
+  <header class="page-header">
+    <h1 class="page-title">Logic Gates</h1>
+    <p class="page-subtitle">From Python to C</p>
+    <div class="page-divider"></div>
+  </header>
+
+  <div class="lesson-body">
+
+    <!-- Table of Contents -->
+    <nav class="toc">
+      <ol>
+        <li><a href="#lesson-overview">Lesson Overview</a></li>
+        <li><a href="#part-1--what-changed-and-why">Part 1 &mdash; What Changed and Why</a></li>
+        <li><a href="#part-2--what-is-a-header-file">Part 2 &mdash; What is a Header File?</a></li>
+        <li><a href="#part-3--printf-warm-ups">Part 3 &mdash; printf Warm-Ups</a></li>
+        <li><a href="#part-4--building-gates-together">Part 4 &mdash; Building Gates Together</a></li>
+        <li><a href="#part-5--reference-c-operators">Part 5 &mdash; Reference: C Operators</a></li>
+        <li><a href="#part-6--your-challenge">Part 6 &mdash; Your Challenge</a></li>
+        <li><a href="#bonus-truth-table-checker">Bonus: Truth Table Checker</a></li>
+      </ol>
+    </nav>
+
+    <hr>
+
+    <!-- Lesson Overview -->
+    <h2 id="lesson-overview">Lesson Overview</h2>
+
+    <p><strong>Goal:</strong> Take the logic gate functions you already wrote in Python and recreate them in C.</p>
+
+    <p><strong>What you already know:</strong></p>
+    <ul>
+      <li>What AND, OR, NOT, XOR, NOR, and XNOR gates do</li>
+      <li>How to write a function in Python</li>
+      <li>How to call a function and check its output</li>
+    </ul>
+
+    <p><strong>What you will learn today:</strong></p>
+    <ul>
+      <li>Why C requires more structure than Python</li>
+      <li>What <code>#include</code> does and why we need <code>&lt;stdbool.h&gt;</code></li>
+      <li>How to print values to the screen using <code>printf</code></li>
+      <li>How to write a function in C</li>
+      <li>How to use C&rsquo;s symbolic operators: <code>!</code>, <code>&amp;&amp;</code>, <code>||</code>, <code>^</code></li>
+    </ul>
+
+    <p><strong>Where you will work:</strong> <a href="https://www.onlinegdb.com/" target="_blank" rel="noopener">OnlineGDB</a> &mdash; set the language to <strong>C</strong> in the top-right dropdown.</p>
+
+    <hr>
+
+    <!-- Part 1 -->
+    <h2 id="part-1--what-changed-and-why">Part 1 &mdash; What Changed and Why</h2>
+
+    <p>You already know how to write an AND gate in Python:</p>
+
+    <span class="code-label">Python</span>
+    <pre><code>def and_gate(x, y):
+    return (x and y)</code></pre>
+
+    <p>Here is the same gate written in C:</p>
+
+    <span class="code-label">C</span>
+    <pre><code>#include &lt;stdbool.h&gt;
+
+bool and_gate(bool x, bool y) {
+    return x &amp;&amp; y;
+}</code></pre>
+
+    <p>These two functions do the exact same thing. But C looks different. Let&rsquo;s go through every difference, one at a time.</p>
+
+    <hr>
+
+    <h3 id="1-1">1.1 &mdash; Python lets you write English. C uses symbols.</h3>
+
+    <p>This is the biggest shift. Python uses reserved words that read like sentences:</p>
+
+    <table>
+      <thead>
+        <tr><th>What it means</th><th>Python (English)</th><th>C (Symbolic)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>NOT</td><td><code>not x</code></td><td><code>!x</code></td></tr>
+        <tr><td>AND</td><td><code>x and y</code></td><td><code>x &amp;&amp; y</code></td></tr>
+        <tr><td>OR</td><td><code>x or y</code></td><td><code>x || y</code></td></tr>
+        <tr><td>XOR</td><td><code>x ^ y</code></td><td><code>x ^ y</code> &larr; same!</td></tr>
+      </tbody>
+    </table>
+
+    <blockquote>
+      <p><strong>Notice:</strong> XOR is not in this table yet &mdash; we will come back to it. You built XOR yourself out of AND, OR, and NOT, and we are going to do the same thing in C before we introduce any new symbols.</p>
+    </blockquote>
+
+    <hr>
+
+    <h3 id="1-2">1.2 &mdash; C requires you to declare types</h3>
+
+    <p>In Python, you can write:</p>
+
+    <span class="code-label">Python</span>
+    <pre><code>x = True</code></pre>
+
+    <p>Python figures out on its own that <code>x</code> is a boolean. C does not do this. In C, you must tell the compiler what type every variable and function is going to use:</p>
+
+    <span class="code-label">C</span>
+    <pre><code>bool x = true;   // you must say "bool" before the variable name</code></pre>
+
+    <p>This applies to functions too. In Python, <code>def</code> starts every function. In C, you write the <strong>return type</strong> where <code>def</code> used to be:</p>
+
+    <span class="code-label">Python</span>
+    <pre><code># Python -- "def" starts the function, return type is implied
+def and_gate(x, y):
+    return (x and y)</code></pre>
+
+    <span class="code-label">C</span>
+    <pre><code>// C -- return type comes first, then function name, then parameters with their types
+bool and_gate(bool x, bool y) {
+    return x &amp;&amp; y;
+}</code></pre>
+
+    <hr>
+
+    <h3 id="1-3">1.3 &mdash; Every statement ends with a semicolon</h3>
+
+    <p>In Python, a newline ends a statement. In C, you must put a <code>;</code> at the end of every statement. If you forget it, the compiler will give you an error.</p>
+
+    <span class="code-label">C</span>
+    <pre><code>return x &amp;&amp; y;   // semicolon is required</code></pre>
+
+    <hr>
+
+    <h3 id="1-4">1.4 &mdash; true and false are lowercase in C</h3>
+
+    <p>Python uses <code>True</code> and <code>False</code> (capital T, capital F).<br>
+    C uses <code>true</code> and <code>false</code> (all lowercase).</p>
+
+    <span class="code-label">Python</span>
+    <pre><code>and_gate(True, False)   # Python</code></pre>
+
+    <span class="code-label">C</span>
+    <pre><code>and_gate(true, false)   // C</code></pre>
+
+    <hr>
+
+    <!-- Part 2 -->
+    <h2 id="part-2--what-is-a-header-file">Part 2 &mdash; What is a Header File?</h2>
+
+    <p>At the very top of your C program, you will see this line:</p>
+
+    <span class="code-label">C</span>
+    <pre><code>#include &lt;stdbool.h&gt;</code></pre>
+
+    <h3>What does <code>#include</code> mean?</h3>
+
+    <p>Think of <code>#include</code> like an import statement. It tells the compiler:</p>
+
+    <blockquote>
+      <p>&ldquo;Before you compile my code, go find this file and pull its contents in.&rdquo;</p>
+    </blockquote>
+
+    <p>The compiler does not know what <code>bool</code>, <code>true</code>, or <code>false</code> mean by default. Those words are defined in a file called <code>stdbool.h</code>. When you write <code>#include &lt;stdbool.h&gt;</code>, you are loading those definitions so your program can use them.</p>
+
+    <p>The angle brackets <code>&lt; &gt;</code> mean: &ldquo;look for this file in the standard library&rdquo; &mdash; a collection of official files that come with every C installation.</p>
+
+    <h3>What is a <code>.h</code> file?</h3>
+
+    <p>The <code>.h</code> stands for <strong>header</strong>. A header file is a file that contains definitions and declarations &mdash; essentially, it tells the compiler &ldquo;here are some tools you can use.&rdquo; You don&rsquo;t write header files yourself in this lesson; you just include the ones you need.</p>
+
+    <h3>What would happen without it?</h3>
+
+    <p>Try removing the <code>#include &lt;stdbool.h&gt;</code> line and running your code. You will see an error like:</p>
+
+    <pre><code>error: unknown type name 'bool'</code></pre>
+
+    <p>The compiler has no idea what <code>bool</code> means until you include the file that defines it.</p>
+
+    <h3>The two includes you need for this lesson</h3>
+
+    <span class="code-label">C</span>
+    <pre><code>#include &lt;stdbool.h&gt;   // gives us: bool, true, false
+#include &lt;stdio.h&gt;     // gives us: printf (for printing to the screen)</code></pre>
+
+    <hr>
+
+    <!-- Part 3 -->
+    <h2 id="part-3--printf-warm-ups">Part 3 &mdash; printf Warm-Ups</h2>
+
+    <p>In Python, displaying a value is simple:</p>
+
+    <span class="code-label">Python</span>
+    <pre><code>print(True)
+print(and_gate(True, False))</code></pre>
+
+    <p>In C, the equivalent is <code>printf</code>. It is more powerful, but more syntax to learn. Let&rsquo;s warm up before we write any gates.</p>
+
+    <hr>
+
+    <h3 id="3-1">3.1 &mdash; Printing a plain message</h3>
+
+    <span class="code-label">C</span>
+    <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    printf("Hello, world!\n");
+    return 0;
+}</code></pre>
+
+    <p><strong>What is <code>\n</code>?</strong><br>
+    It is the <strong>newline character</strong> &mdash; it moves the cursor to the next line, like pressing Enter. Without it, your next output would appear on the same line.</p>
+
+    <p><strong>What is <code>main()</code>?</strong><br>
+    Every C program must have a function called <code>main</code>. This is where the program starts running. For now, just know that your code goes inside it.</p>
+
+    <p><strong>What is <code>return 0;</code>?</strong><br>
+    When <code>main</code> finishes, it returns <code>0</code> to the operating system. By convention, <code>0</code> means &ldquo;everything went fine.&rdquo; You will always write this at the end of <code>main</code>.</p>
+
+    <hr>
+
+    <h3 id="3-2">3.2 &mdash; Printing an integer</h3>
+
+    <span class="code-label">C</span>
+    <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    printf("The answer is: %d\n", 42);
+    return 0;
+}</code></pre>
+
+    <p><strong>Output:</strong></p>
+    <pre><code>The answer is: 42</code></pre>
+
+    <p><code>printf</code> uses <strong>format specifiers</strong> &mdash; placeholder codes inside the string that get replaced by actual values:</p>
+
+    <table>
+      <thead>
+        <tr><th>Format specifier</th><th>What it prints</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>%d</code></td><td>An integer (digit)</td></tr>
+        <tr><td><code>%f</code></td><td>A decimal number (float)</td></tr>
+        <tr><td><code>%s</code></td><td>A string of text</td></tr>
+        <tr><td><code>%c</code></td><td>A single character</td></tr>
+      </tbody>
+    </table>
+
+    <p>The value you want to print goes <strong>after</strong> the string, separated by a comma.</p>
+
+    <hr>
+
+    <h3 id="3-3">3.3 &mdash; Printing a boolean</h3>
+
+    <p>Here is something surprising: C does not have a <code>%bool</code> format specifier. Booleans in C are just integers under the hood &mdash; <code>true</code> is stored as <code>1</code>, and <code>false</code> is stored as <code>0</code>. So you print them with <code>%d</code>:</p>
+
+    <span class="code-label">C</span>
+    <pre><code>#include &lt;stdbool.h&gt;
+#include &lt;stdio.h&gt;
+
+int main() {
+    bool result = true;
+    printf("Result: %d\n", result);   // prints: Result: 1
+    return 0;
+}</code></pre>
+
+    <p>This is actually a useful reminder: at the hardware level, <code>true</code> and <code>false</code> are just <code>1</code> and <code>0</code>. The word <code>bool</code> is a layer of meaning on top of that.</p>
+
+    <hr>
+
+    <h3 id="3-4">3.4 &mdash; Warm-Up Exercises</h3>
+
+    <p>Try these in OnlineGDB before moving on. Just put them inside <code>main()</code>.</p>
+
+    <p><strong>Exercise 1:</strong> Print the number <code>7</code> using <code>printf</code>.</p>
+
+    <p><strong>Exercise 2:</strong> Print the result of <code>3 + 4</code> using <code>printf</code> with a <code>%d</code> format specifier.<br>
+    <em>(Hint: the value after the comma can be an expression, not just a variable.)</em></p>
+
+    <p><strong>Exercise 3:</strong> Print the value of <code>true</code> and the value of <code>false</code> on two separate lines.</p>
+
+    <p><strong>Exercise 4:</strong> Print the following formatted output using two <code>printf</code> calls:</p>
+    <pre><code>Input A: 1
+Input B: 0</code></pre>
+
+    <hr>
+
+    <!-- Part 4 -->
+    <h2 id="part-4--building-gates-together">Part 4 &mdash; Building Gates Together</h2>
+
+    <p>Now that you can print values, let&rsquo;s build the first two gates together.</p>
+
+    <hr>
+
+    <h3 id="4-1">4.1 &mdash; The NOT Gate</h3>
+
+    <p><strong>Python version:</strong></p>
+    <span class="code-label">Python</span>
+    <pre><code>def not_gate(x):
+    return not x</code></pre>
+
+    <p><strong>C version:</strong></p>
+
+    <span class="code-label">C</span>
+    <pre><code>// NOT gate
+// Takes one boolean input x.
+// Returns the logical complement -- true becomes false, false becomes true.
+// Operator: ! (replaces Python's "not")
+bool not_gate(bool x) {
+    return !x;
+}</code></pre>
+
+    <p><strong>Test it inside main():</strong></p>
+
+    <span class="code-label">C</span>
+    <pre><code>int main() {
+    printf("NOT(1) = %d\n", not_gate(true));    // expect: 0
+    printf("NOT(0) = %d\n", not_gate(false));   // expect: 1
+    return 0;
+}</code></pre>
+
+    <p><strong>The full program so far:</strong></p>
+
+    <span class="code-label">C</span>
+    <pre><code>#include &lt;stdbool.h&gt;
+#include &lt;stdio.h&gt;
+
+bool not_gate(bool x) {
+    return !x;
+}
+
+int main() {
+    printf("NOT(1) = %d\n", not_gate(true));
+    printf("NOT(0) = %d\n", not_gate(false));
+    return 0;
+}</code></pre>
+
+    <p>Paste this into OnlineGDB and run it. Make sure you see:</p>
+    <pre><code>NOT(1) = 0
+NOT(0) = 1</code></pre>
+
+    <hr>
+
+    <h3 id="4-2">4.2 &mdash; The AND Gate</h3>
+
+    <p><strong>Python version:</strong></p>
+    <span class="code-label">Python</span>
+    <pre><code>def and_gate(x, y):
+    return (x and y)</code></pre>
+
+    <p><strong>C version:</strong></p>
+
+    <span class="code-label">C</span>
+    <pre><code>// AND gate
+// Takes two boolean inputs x and y.
+// Returns true only when both inputs are true.
+// Operator: &amp;&amp; (replaces Python's "and")
+bool and_gate(bool x, bool y) {
+    return x &amp;&amp; y;
+}</code></pre>
+
+    <p><strong>Add these test lines to main():</strong></p>
+
+    <span class="code-label">C</span>
+    <pre><code>printf("AND(1,1) = %d\n", and_gate(true, true));    // expect: 1
+printf("AND(1,0) = %d\n", and_gate(true, false));   // expect: 0
+printf("AND(0,0) = %d\n", and_gate(false, false));  // expect: 0</code></pre>
+
+    <p>Run it and verify all three outputs match the AND gate truth table.</p>
+
+    <hr>
+
+    <h3 id="4-3">4.3 &mdash; The Pattern</h3>
+
+    <p>You now have the pattern. Every gate follows the same structure:</p>
+
+    <span class="code-label">C</span>
+    <pre><code>bool gate_name(bool x, bool y) {
+    return [expression using !, &amp;&amp;, ||, ^];
+}</code></pre>
+
+    <p>The only thing that changes is the expression in the return statement.</p>
+
+    <hr>
+
+    <!-- Part 5 -->
+    <h2 id="part-5--reference-c-operators">Part 5 &mdash; Reference: C Operators</h2>
+
+    <p>Use this table when building the remaining gates.</p>
+
+    <h3>Logical Operators</h3>
+
+    <table>
+      <thead>
+        <tr><th>Operator</th><th>Meaning</th><th>Example</th><th>Result</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>!</code></td><td>NOT</td><td><code>!true</code></td><td><code>false</code></td></tr>
+        <tr><td><code>&amp;&amp;</code></td><td>AND</td><td><code>true &amp;&amp; false</code></td><td><code>false</code></td></tr>
+        <tr><td><code>||</code></td><td>OR</td><td><code>true || false</code></td><td><code>true</code></td></tr>
+      </tbody>
+    </table>
+
+    <h3>Building XOR From What You Already Know</h3>
+
+    <p>You built XOR in Python like this:</p>
+
+    <span class="code-label">Python</span>
+    <pre><code>def xor_gate(x, y):
+    both  = x and y
+    either = x or y
+    return (either and not both)</code></pre>
+
+    <p>The logic was: <strong>either one is true, but not both.</strong> That same reasoning translates directly to C using the operators you already know:</p>
+
+    <span class="code-label">C</span>
+    <pre><code>bool xor_gate(bool x, bool y) {
+    bool both   = x &amp;&amp; y;
+    bool either = x || y;
+    return (either &amp;&amp; !both);
+}</code></pre>
+
+    <p>Every line maps exactly to your Python version &mdash; only the symbols changed.</p>
+
+    <p>Once you have written and tested this version, there is a shorter way to write XOR that C provides as a built-in operator:</p>
+
+    <span class="code-label">C</span>
+    <pre><code>bool xor_gate(bool x, bool y) {
+    return x ^ y;   // ^ means XOR -- C has a symbol for "either but not both"
+}</code></pre>
+
+    <p>Both versions are correct. The <code>^</code> version is just shorthand. It is worth knowing <code>^</code> exists because you will see it in other people&rsquo;s code &mdash; but understanding <em>why</em> it works is more important, and you already do.</p>
+
+    <h3>Compound Gates</h3>
+
+    <p>NAND, NOR, and XNOR are all built by wrapping a simpler gate in <code>!( )</code>.</p>
+
+    <table>
+      <thead>
+        <tr><th>Gate</th><th>Logic</th><th>C Expression</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>NAND</td><td>NOT of AND</td><td><code>!(x &amp;&amp; y)</code></td></tr>
+        <tr><td>NOR</td><td>NOT of OR</td><td><code>!(x || y)</code></td></tr>
+        <tr><td>XNOR</td><td>NOT of XOR</td><td><code>!(x ^ y)</code></td></tr>
+      </tbody>
+    </table>
+
+    <h3>Thinking About XNOR</h3>
+
+    <p>XNOR returns <code>true</code> when both inputs are <strong>the same value</strong>. Think of it as asking: &ldquo;Are x and y equal?&rdquo;</p>
+
+    <p>You can also derive it from your XOR &mdash; just wrap it in NOT:</p>
+
+    <span class="code-label">C</span>
+    <pre><code>bool xnor_gate(bool x, bool y) {
+    bool both   = x &amp;&amp; y;
+    bool either = x || y;
+    bool xor_result = (either &amp;&amp; !both);
+    return !xor_result;   // flip XOR to get XNOR
+}</code></pre>
+
+    <p>Or using <code>^</code> once you are comfortable with it:</p>
+
+    <span class="code-label">C</span>
+    <pre><code>bool xnor_gate(bool x, bool y) {
+    return !(x ^ y);
+}</code></pre>
+
+    <hr>
+
+    <!-- Part 6 -->
+    <h2 id="part-6--your-challenge">Part 6 &mdash; Your Challenge</h2>
+
+    <p>You have the pattern. You have the operator reference table. Now build the rest.</p>
+
+    <h3>Your Task</h3>
+
+    <p>Complete the following program in OnlineGDB. The <code>not_gate</code> and <code>and_gate</code> are done for you. Write the remaining five gates and test each one.</p>
+
+    <span class="code-label">C</span>
+    <pre><code>#include &lt;stdbool.h&gt;
+#include &lt;stdio.h&gt;
+
+// --- NOT gate (done) ---
+bool not_gate(bool x) {
+    return !x;
+}
+
+// --- AND gate (done) ---
+bool and_gate(bool x, bool y) {
+    return x &amp;&amp; y;
+}
+
+// --- OR gate ---
+// Takes two boolean inputs x and y.
+// Returns true when at least one input is true.
+// Operator: ||
+bool or_gate(bool x, bool y) {
+    // your code here
+}
+
+// --- XOR gate ---
+// Takes two boolean inputs x and y.
+// Returns true when inputs are different -- "either but not both."
+// Hint: you built this in Python already. Translate your three lines using &amp;&amp;, ||, and !
+bool xor_gate(bool x, bool y) {
+    // your code here
+}
+
+// --- NAND gate ---
+// Takes two boolean inputs x and y.
+// Returns the complement of AND -- false only when both inputs are true.
+// Hint: wrap the AND expression in !( )
+bool nand_gate(bool x, bool y) {
+    // your code here
+}
+
+// --- NOR gate ---
+// Takes two boolean inputs x and y.
+// Returns the complement of OR -- true only when both inputs are false.
+// Hint: wrap the OR expression in !( )
+bool nor_gate(bool x, bool y) {
+    // your code here
+}
+
+// --- XNOR gate ---
+// Takes two boolean inputs x and y.
+// Returns true when both inputs are equal -- the opposite of XOR.
+// Hint: build your XOR result first, then flip it with !
+bool xnor_gate(bool x, bool y) {
+    // your code here
+}
+
+int main() {
+
+    // NOT
+    printf("NOT(1)      = %d\n", not_gate(true));      // expect: 0
+
+    // AND
+    printf("AND(1,0)    = %d\n", and_gate(true, false));  // expect: 0
+    printf("AND(1,1)    = %d\n", and_gate(true, true));   // expect: 1
+
+    // OR
+    printf("OR(1,0)     = %d\n", or_gate(true, false));   // expect: 1
+    printf("OR(0,0)     = %d\n", or_gate(false, false));  // expect: 0
+
+    // XOR
+    printf("XOR(1,0)    = %d\n", xor_gate(true, false));  // expect: 1
+    printf("XOR(1,1)    = %d\n", xor_gate(true, true));   // expect: 0
+
+    // NAND
+    printf("NAND(1,1)   = %d\n", nand_gate(true, true));  // expect: 0
+    printf("NAND(1,0)   = %d\n", nand_gate(true, false)); // expect: 1
+
+    // NOR
+    printf("NOR(0,0)    = %d\n", nor_gate(false, false)); // expect: 1
+    printf("NOR(1,0)    = %d\n", nor_gate(true, false));  // expect: 0
+
+    // XNOR
+    printf("XNOR(1,1)   = %d\n", xnor_gate(true, true));  // expect: 1
+    printf("XNOR(1,0)   = %d\n", xnor_gate(true, false)); // expect: 0
+
+    return 0;
+}</code></pre>
+
+    <h3>Expected Output</h3>
+
+    <p>When all gates are correct, your program should print:</p>
+
+    <pre><code>NOT(1)      = 0
+AND(1,0)    = 0
+AND(1,1)    = 1
+OR(1,0)     = 1
+OR(0,0)     = 0
+XOR(1,0)    = 1
+XOR(1,1)    = 0
+NAND(1,1)   = 0
+NAND(1,0)   = 1
+NOR(0,0)    = 1
+NOR(1,0)    = 0
+XNOR(1,1)   = 1
+XNOR(1,0)   = 0</code></pre>
+
+    <hr>
+
+    <!-- Bonus -->
+    <h2 id="bonus-truth-table-checker">Bonus: Truth Table Checker</h2>
+
+    <p>If you finish early, extend <code>main()</code> to print a <strong>full truth table</strong> for one gate of your choice. A full truth table tests all four possible input combinations: (0,0), (0,1), (1,0), (1,1).</p>
+
+    <p>Here is what the output might look like for XOR:</p>
+
+    <pre><code>XOR Truth Table
+x | y | result
+0 | 0 | 0
+0 | 1 | 1
+1 | 0 | 1
+1 | 1 | 0</code></pre>
+
+    <p>You already know how to use <code>printf</code> with <code>%d</code>. Can you figure out how to print all four rows?</p>
+
+    <hr>
+
+    <p><em>Next lesson: using variables, loops, and arrays to generate truth tables automatically.</em></p>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="https://linkedin.com/in/adhood" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/andrewdhood" target="_blank" rel="noopener">GitHub</a>
+      <a href="/resume/">Resume</a>
+      <a href="mailto:andrewdavidhood@gmail.com">Email</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Andrew Hood</p>
+  </footer>
+
+</main>
+
+<script src="/js/global.js"></script>
+</body>
+</html>

@@ -150,29 +150,75 @@
 
   <div class="page-divider"></div>
 
-  <!-- Sample Lesson -->
-  <section class="teaching-entry" style="animation-delay: 0.35s;">
+  <!-- Sample Custom Curriculum -->
+  <section class="subjects-section" style="animation-delay: 0.35s;">
+    <h2 class="section-heading">Sample Custom Curriculum</h2>
+    <p class="entry-description" style="margin-bottom: 32px;">
+      Original lesson plans and worksheets written for individual 8th-grade students. Each was completed in a one-on-one session. The materials treat young students as serious thinkers&mdash;no false simplification, no condescension, no hand-waving. University-level concepts adapted for middle school through scaffolding, cross-linguistic transfer, and concrete-to-abstract progression.
+    </p>
+  </section>
+
+  <section class="teaching-entry" style="animation-delay: 0.4s;">
     <div class="entry-header">
-      <div class="entry-number">&bull;</div>
+      <div class="entry-number">01</div>
       <div class="entry-meta">
-        <span class="entry-label">Sample Lesson Plan</span>
+        <span class="entry-label">Python &rarr; C Translation</span>
         <span class="entry-date">Completed by an 8th-grade student</span>
       </div>
     </div>
     <h2 class="entry-title">Converting a Grade Calculator from Python to C</h2>
+    <a href="/teaching/lessons/python-to-c-logic-gates.html" target="_blank" rel="noopener" class="lesson-link">View Full Lesson &rarr;</a>
     <p class="entry-description">
-      A scaffolded cross-linguistic translation exercise where the student re-implements a working Python program in C. The lesson teaches low-level computing concepts&mdash;memory as a physical resource, types as instructions for reading bytes, data vs. interpretation&mdash;through the concrete act of preserving behavior while changing representation. The Python program and the C program are isomorphic: different syntax, same structure, same output.
+      A scaffolded cross-linguistic translation exercise where the student re-implements a working Python program in C. Teaches low-level computing concepts&mdash;memory as a physical resource, types as instructions for reading bytes, data vs. interpretation&mdash;through the concrete act of preserving behavior while changing representation.
     </p>
     <ul class="entry-details">
-      <li>Teaches the machine, not the syntax&mdash;explains why a <code>char</code> exists at the hardware level, that memory is physical, that <code>%d</code> and <code>%c</code> read the same byte differently because you gave different instructions</li>
-      <li>Every new C concept is introduced alongside its Python equivalent, with a side-by-side translation table the student can reference while working</li>
-      <li>Scaffolded <code>/* YOUR CODE HERE */</code> blocks give structure but require the student to do the actual reasoning&mdash;comments say what to write, not how</li>
-      <li>Expected output table asks the student to predict before running, following P&oacute;lya&rsquo;s method: understand the problem before attempting the solution</li>
-      <li>Concepts deferred honestly&mdash;the <code>&amp;</code> in <code>scanf</code> is flagged as beyond scope and promised for a future lesson, never hand-waved or oversimplified</li>
+      <li>Teaches the machine, not the syntax&mdash;explains why a <code>char</code> exists at the hardware level, that <code>%d</code> and <code>%c</code> read the same byte differently because you gave different instructions</li>
+      <li>Every C concept introduced alongside its Python equivalent with a side-by-side translation table</li>
+      <li>Scaffolded <code>/* YOUR CODE HERE */</code> blocks require the student to reason through the logic</li>
+      <li>Concepts deferred honestly&mdash;the <code>&amp;</code> in <code>scanf</code> is flagged as beyond scope, never hand-waved</li>
     </ul>
-    <p class="entry-note">
-      This is one lesson in a broader curriculum that includes logic gates, Z&#8322; group isomorphisms, matrix transformations, and symbolic logic&mdash;university-level mathematics adapted for middle school students.
+  </section>
+
+  <section class="teaching-entry" style="animation-delay: 0.45s;">
+    <div class="entry-header">
+      <div class="entry-number">02</div>
+      <div class="entry-meta">
+        <span class="entry-label">Python &rarr; C Translation</span>
+        <span class="entry-date">Completed by an 8th-grade student</span>
+      </div>
+    </div>
+    <h2 class="entry-title">Programming Logic Gates: Python to C</h2>
+    <a href="/teaching/lessons/python-to-c-logic-gates.html" target="_blank" rel="noopener" class="lesson-link">View Full Lesson &rarr;</a>
+    <p class="entry-description">
+      The student rebuilds logic gates (AND, OR, NOT, XOR, NAND, NOR, XNOR) they already wrote in Python using C&rsquo;s symbolic operators. The lesson bridges the gap between English-like Python keywords (<code>and</code>, <code>or</code>, <code>not</code>) and C&rsquo;s symbolic equivalents (<code>&amp;&amp;</code>, <code>||</code>, <code>!</code>), teaching that the same logical operations live underneath both syntaxes.
     </p>
+    <ul class="entry-details">
+      <li>Builds from known to unknown&mdash;the student already wrote these gates in Python, now re-expresses them in a more constrained formal system</li>
+      <li>Introduces header files, type declarations, <code>printf</code> format specifiers, and <code>main()</code> through the concrete task of making gates work</li>
+      <li>XOR is derived from AND, OR, and NOT before introducing the <code>^</code> shorthand&mdash;understanding precedes convenience</li>
+      <li>Bonus challenge: build a full truth table printer, applying <code>printf</code> skills to generate all four input combinations</li>
+    </ul>
+  </section>
+
+  <section class="teaching-entry" style="animation-delay: 0.5s;">
+    <div class="entry-header">
+      <div class="entry-number">03</div>
+      <div class="entry-meta">
+        <span class="entry-label">Symbolic Logic &amp; Proof Foundations</span>
+        <span class="entry-date">Completed by an 8th-grade student</span>
+      </div>
+    </div>
+    <h2 class="entry-title">Saying It With Symbols: Quantifiers &amp; First-Order Logic</h2>
+    <a href="/teaching/lessons/first-order-logic.pdf" target="_blank" rel="noopener" class="lesson-link">View Full Worksheet (PDF) &rarr;</a>
+    <p class="entry-description">
+      A 10-page worksheet introducing first-order logic to a middle school student. Covers set membership (&#8469;, &#8484;, &#8474;, &#8477;), the universal quantifier (&#8704;), the existential quantifier (&#8707;), the unique existential (&#8707;!), and multi-variable statements with combined quantifiers. The student translates between English and symbolic notation in both directions.
+    </p>
+    <ul class="entry-details">
+      <li>Five-part progression: number sets and membership &rarr; universal quantifier &rarr; existential quantifier &rarr; unique existential &rarr; combining quantifiers with multiple variables</li>
+      <li>Counterexample reasoning throughout&mdash;the student must disprove false &ldquo;for all&rdquo; statements by finding a single counterexample</li>
+      <li>Exercises require the student to recognize how the choice of set changes truth value&mdash;the same equation can be &#8707;! over &#8469; but &#8707; over &#8484;</li>
+      <li>Challenge problems include multi-variable translations and recognizing which variable is &ldquo;for all&rdquo; vs. &ldquo;there exists&rdquo;</li>
+    </ul>
   </section>
 
   <div class="page-divider"></div>
