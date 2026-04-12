@@ -102,6 +102,57 @@
       </ul>
     </div>
 
+  <!-- ====== DRUG PIPELINE ====== -->
+
+    <div class="project-showcase">
+      <div class="showcase-meta">
+        <span class="showcase-year">2026</span>
+        <span class="showcase-label">Computational Chemistry</span>
+      </div>
+      <h2 class="showcase-title">Evolutionary Test-Suite-Driven Drug Discovery Pipeline</h2>
+      <p class="showcase-tagline">A computational framework that applies test-driven development to molecular design&mdash;defining drug candidates as test specifications, generating molecules to pass them, and optimizing across multiple pharmacological objectives using game theory.</p>
+
+      <div class="skill-stats">
+        <div class="stat-item">
+          <div class="stat-number">1,200+</div>
+          <div class="stat-label">Novel Candidates</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Therapeutic Domains</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Filtering Tiers</div>
+        </div>
+      </div>
+
+      <p class="showcase-subheading">The Idea</p>
+      <p class="showcase-description">Most drug design optimizes a single objective. This pipeline reframes the problem as multi-objective optimization under strategic constraints: a drug is not a key fitting a lock&mdash;it&rsquo;s a player in a multi-agent game against dozens of off-targets, metabolic pathways, and efflux pumps. Candidates are filtered through a cost-ordered elimination funnel that kills bad molecules cheaply (milliseconds) before spending CPU time on expensive docking simulations.</p>
+
+      <p class="showcase-subheading">Architecture</p>
+      <ul class="showcase-details">
+        <li><strong>Tier 0</strong> &mdash; Near-free filtering (milliseconds): chemical validity, Lipinski Rule of 5, Veber rules, PAINS detection, synthetic accessibility scoring via RDKit. Eliminates ~70&ndash;80% of candidates at near-zero cost.</li>
+        <li><strong>Tier 1</strong> &mdash; Primary target docking (seconds): AutoDock Vina binding affinity against the target receptor, ADMET prediction, and mechanism-of-action classification from binding poses.</li>
+        <li><strong>Tier 2</strong> &mdash; Off-target selectivity panel (minutes): docking against 50&ndash;100 critical off-target proteins (muscarinic M3, hERG, Nav1.5, SERT, etc.) to build a full selectivity profile matrix.</li>
+      </ul>
+
+      <p class="showcase-subheading">Key Results</p>
+      <ul class="showcase-details">
+        <li>Validated the pipeline using diphenhydramine (dirty) vs. cetirizine (clean) as controls&mdash;correctly discriminating selectivity profiles across the off-target panel</li>
+        <li>Generated 1,200+ novel scaffolds across antihistamines, opioids (G-protein biased agonism), NMDA antagonists, antibiotics, and anxiolytics</li>
+        <li>Discovered carbazole-ketamine hybrids achieving &minus;12.26 kcal/mol vs. ketamine&rsquo;s &minus;7.35 at the NMDA receptor with 2&ndash;3x better off-target selectivity</li>
+        <li>Multi-objective welfare scoring across 5 therapeutic profiles (analgesic, antidepressant, anxiolytic, antibiotic, humanitarian) with Pareto frontier optimization</li>
+      </ul>
+
+      <p class="showcase-subheading">Stack</p>
+      <ul class="showcase-details">
+        <li>Python, RDKit, AutoDock Vina, Meeko, Open Babel, NumPy/SciPy/Pandas, pytest</li>
+        <li>Claude API for LLM-based SMILES generation; game theory framework for multi-objective scoring</li>
+        <li>Runs entirely on an M3 Pro MacBook (CPU-only, no GPU required)</li>
+      </ul>
+    </div>
+
   <!-- ====== CPS MATCH ====== -->
 
     <div class="project-showcase">
