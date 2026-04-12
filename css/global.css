@@ -20,6 +20,7 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-body);
+  font-size: 17px;
   min-height: 100vh;
   overflow-x: hidden;
   line-height: 1.6;
@@ -298,7 +299,7 @@ a:hover { color: var(--text-bright); }
 
 .page-subtitle {
   font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text-dim);
   letter-spacing: 3px;
   text-transform: uppercase;

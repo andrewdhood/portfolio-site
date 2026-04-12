@@ -79,7 +79,7 @@
 /* ====== CARD INSTITUTION ====== */
 .card-institution {
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: 15px;
   color: var(--text-dim);
   margin-bottom: 20px;
   line-height: 1.5;

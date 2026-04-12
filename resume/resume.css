@@ -67,7 +67,7 @@
 /* ====== SECTION HEADING ====== */
 .section-heading {
   font-family: var(--font-hero);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 4px;
   text-transform: uppercase;
@@ -120,7 +120,7 @@
 
 .entry-company {
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: 15px;
   color: var(--text-dim);
 }
 
@@ -156,7 +156,7 @@
 
 .entry-details li {
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: 15px;
   color: var(--text-dim);
   line-height: 1.75;
   padding-left: 16px;
@@ -240,7 +240,7 @@
 
 .skill-items {
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: 15px;
   color: var(--text-dim);
   line-height: 1.7;
 }
