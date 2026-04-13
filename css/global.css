@@ -5,6 +5,7 @@
   --text-dim: #888;
   --text-bright: #fff;
   --accent: #c8c8d0;
+  --link: #64d2ff;
   --font-hero: 'Chakra Petch', sans-serif;
   --font-body: 'Syne', sans-serif;
   --font-serif: 'Cormorant Garamond', serif;
@@ -27,7 +28,7 @@ body {
 }
 
 a {
-  color: var(--text);
+  color: var(--link);
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -203,6 +204,11 @@ a:hover { color: var(--text-bright); }
   list-style: none;
 }
 
+.nav-logo,
+.nav-links a {
+  color: var(--text-dim);
+}
+
 .nav-links a {
   font-family: var(--font-mono);
   font-size: 12px;
@@ -264,7 +270,7 @@ a:hover { color: var(--text-bright); }
 .mobile-menu a {
   font-family: var(--font-serif);
   font-size: 28px;
-  color: var(--text-dim);
+  color: var(--text-dim) !important;
   letter-spacing: 2px;
 }
 
@@ -331,7 +337,7 @@ a:hover { color: var(--text-bright); }
   font-size: 11px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--text-dim);
+  color: var(--text-dim) !important;
 }
 
 .footer-copy {

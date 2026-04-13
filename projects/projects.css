@@ -95,7 +95,7 @@
   font-family: var(--font-mono);
   font-size: 12px;
   letter-spacing: 0.5px;
-  color: var(--text-dim);
+  color: var(--link);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding-bottom: 2px;
   transition: color 0.3s ease, border-color 0.3s ease;

@@ -132,7 +132,7 @@
   font-size: 12px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--link);
   border-bottom: 1px solid rgba(200,200,208,0.3);
   padding-bottom: 2px;
   transition: border-color 0.3s ease;
